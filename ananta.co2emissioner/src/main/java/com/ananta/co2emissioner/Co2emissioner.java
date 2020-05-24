@@ -2,7 +2,11 @@ package com.ananta.co2emissioner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,10 +71,11 @@ public class Co2emissioner {
 
 
 
-	private static int parseCommandLineArguments(String[] args)   { 
+	private static int parseCommandLineArguments(String[] cliArgs)   { 
 
 		Co2EmissionerLogger.log( Level.INFO, "Parsing Command Line arguments ",logger);
-
+ 		
+ 		String args[]= reformArgs(cliArgs);
 			
 		cmdLineParser = new Co2EmissionerCommandLineParser();
 
@@ -92,6 +97,26 @@ public class Co2emissioner {
 
 	}
 
+	private static String[] reformArgs(String[] cliArgs) {
+		List<String> t = new ArrayList<String>();
+		for(String s: cliArgs) {
+			if(s.contains("=")) {
+				t.add(s.substring(0,s.indexOf("=")));
+				
+				t.add(s.substring(s.indexOf("=")+1,s.length()));
+			}else
+				t.add(s);
+		}
+		Object[] array =  t.toArray();
+		
+ 		
+		String[] dest = new String[array.length];
+		System.arraycopy(array, 0, dest, 0, array.length);
+
+ 		return dest;
+	}
+
+
 	private static void calculateCO2Emission() {
 
 		String startCity = commandLineParam.getStartCity();
@@ -106,7 +131,7 @@ public class Co2emissioner {
  		
 		double distance = getDistanceBetweenCities(startCity,endCity);
 		double co2Calculated = co2Calculator(distance , trasportation_method);
-		System.out.println("\n Your trip caused " +  co2Calculated + "kg of CO2-equivalent.\n");
+		System.out.println("\n Your trip caused " +  co2Calculated + " kg of CO2-equivalent.\n");
 
 	}
 	private static double  co2Calculator(double distance, String trasportation_method) {
@@ -168,7 +193,9 @@ public class Co2emissioner {
 	private static void printHelp() {
 
 		Co2EmissionerLogger.log( Level.SEVERE, "Comamnd line arguments are not prope  ",logger);
-		Co2EmissionerLogger.log( Level.INFO, "Example command : \"java -jar co2emissioner-0.0.1-SNAPSHOT-jar-with-dependencies.jar --start Hamburg --end Berlin --transportation-method medium-diesel-car\\\"  ",logger);
+		Co2EmissionerLogger.log( Level.INFO, "Example command : \"java -jar co2emissioner-0.0.1-SNAPSHOT-jar-with-dependencies.jar --start Hamburg --end Berlin --transportation-method medium-diesel-car\"  ",logger);
   	}
+
+	
 
 }

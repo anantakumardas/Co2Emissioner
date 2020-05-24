@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.ananta.co2emissioner.connection.Connection;
@@ -106,29 +107,35 @@ public class Co2EmissionerCommandLineParser {
 
 	}
 	public boolean parseCommandLineArguments(String[] args)   {
-
+		
 		List<String> argList = new ArrayList<String>(Arrays.asList(args));
 
+		Co2EmissionerLogger.log( Level.INFO, "args    = " + args,logger);
+
+		
 		for (int i = 0; i < argList.size(); i++) {
 			String content = argList.get(i);
-			if ( StringUtil.isEmptyString(content))
+ 			if ( StringUtil.isEmptyString(content))
 				continue;
 
 			if (content.equalsIgnoreCase(Constants.CO2_EMISSSIONER_START_CITY)) {
 				if (!checkArgSizeAndValue(++i, argList, content))
 					return false;
 				startCity = argList.get(i);
+ 
 				continue;
 			}
 			else if (content.equalsIgnoreCase(Constants.CO2_EMISSSIONER_END_CITY)){
 				if (!checkArgSizeAndValue(++i, argList, content))
 					return false;
 				endCity = argList.get(i);
+ 
 				continue;
 			}else if (content.equalsIgnoreCase(Constants.CO2_EMISSSIONER_TRANSPORTATION_METHOD)){
 				if (!checkArgSizeAndValue(++i, argList, content))
 					return false;
 				transportation_method = argList.get(i);
+ 
 				continue;
 			}else if(content.equalsIgnoreCase(Constants.DEBUG_MODE)){
 					if (!checkArgSizeAndValue(++i, argList, content))

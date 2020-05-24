@@ -10,7 +10,7 @@ public class Constants {
 	public static final String OPENROUTESERVICE_REQUEST_HEADER_CONTENT_TYPE_VALUE="application/json; charset=utf-8";
 	
 	public static final String OPENROUTESERVICE_REQUEST_HEADER_ACCEPT_KEY="Accept";
-	public static final String OPENROUTESERVICE_REQUEST_HEADER_ACCEPT_VALUE="application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8";
+	public static final String OPENROUTESERVICE_REQUEST_HEADER_ACCEPT_VALUE="application/json; charset=utf-8";
 
 	public static final String OPENROUTESERVICE_SEARCH_API_GET_API_KEY="api_key";
 	public static final String OPENROUTESERVICE_SEARCH_API_GET_QUERY_PARAM_TEXT_KEY="text";

@@ -1,11 +1,5 @@
 package com.ananta.co2emissioner.connection;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+ 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,17 +8,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.ananta.co2emissioner.Co2emissioner;
+ 
+ 
 import com.ananta.co2emissioner.constants.Constants;
 import com.ananta.co2emissioner.logger.Co2EmissionerLogger;
 import com.ananta.co2emissioner.resource.Co2EmissionerResources;
@@ -76,16 +61,24 @@ public class Connection {
 		Response response = null;
 		try {
 
-			String uri = Constants.OPENROUTESERVICE_SEARCH_API_GET_URI+ "?"+ Constants.OPENROUTESERVICE_SEARCH_API_GET_API_KEY + "=" + API_TOKEN + "&"+ Constants.OPENROUTESERVICE_SEARCH_API_GET_QUERY_PARAM_TEXT_KEY+"=" + location +"&"+ Constants.OPENROUTESERVICE_SEARCH_API_GET_QUERY_PARAM_LAYERS_KEY + "=" + layers;
+			
+			String uri = Constants.OPENROUTESERVICE_SEARCH_API_GET_URI+ "?"+ Constants.OPENROUTESERVICE_SEARCH_API_GET_API_KEY + "=" + API_TOKEN + "&"+ Constants.OPENROUTESERVICE_SEARCH_API_GET_QUERY_PARAM_TEXT_KEY+"=" +  location  +"&"+ Constants.OPENROUTESERVICE_SEARCH_API_GET_QUERY_PARAM_LAYERS_KEY + "=" + layers;
 
+ 			
+			uri= uri.replaceAll("\\s", "+");
+			
+ 					
 			response = client.target(uri)
 					.request(MediaType.TEXT_PLAIN_TYPE)
 					.header(Constants.OPENROUTESERVICE_REQUEST_HEADER_ACCEPT_KEY,Constants.OPENROUTESERVICE_REQUEST_HEADER_ACCEPT_VALUE)
 					.get();
 
- 			Co2EmissionerLogger.log( Level.INFO, "httpGet status: " + response.getStatus(),logger);
+ 			if(response!=null)
+ 				 
+			Co2EmissionerLogger.log( Level.INFO, "httpGet status: " + response.getStatus(),logger);
 
 		}catch(Exception e) {
+			if(response!=null)
 			Co2EmissionerLogger.log( Level.SEVERE, "httpGet status: " + response.getStatus(),logger);
 
 			e.printStackTrace();
@@ -95,5 +88,6 @@ public class Connection {
 
 
 	 
-
+	 
+	
 }

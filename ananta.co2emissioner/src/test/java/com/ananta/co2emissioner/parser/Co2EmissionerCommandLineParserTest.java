@@ -9,8 +9,10 @@ import com.ananta.co2emissioner.utils.StringUtil;
 
 public class Co2EmissionerCommandLineParserTest {
 
-	String args[] = {"--start", "Hamburg","--end","Berlin","--transportation-method","small-diesel-car"};	
+	//String args[] = {"--start", "Hamburg","--end","Berlin","--transportation-method","small-diesel-car"};	
+	String args[] = {"--start", "Los Angeles", "--end", "New York" ,"--transportation-method","medium-diesel-car"};	
 
+	
 	@Test
 	public void testParse() {
 		

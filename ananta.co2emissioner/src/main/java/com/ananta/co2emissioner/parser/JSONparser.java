@@ -12,8 +12,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.ananta.co2emissioner.connection.Connection;
-import com.ananta.co2emissioner.logger.Co2EmissionerLogger;
+ import com.ananta.co2emissioner.logger.Co2EmissionerLogger;
 import com.ananta.co2emissioner.resource.Co2EmissionerResources;
 
 public class JSONparser {

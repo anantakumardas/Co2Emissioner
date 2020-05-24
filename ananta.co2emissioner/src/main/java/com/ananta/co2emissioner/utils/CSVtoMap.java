@@ -1,23 +1,17 @@
 package com.ananta.co2emissioner.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
+ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+ import java.util.Map;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
-
+ 
 import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.MappingIterator;
-
+ 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
-import com.ananta.co2emissioner.connection.Connection;
-import com.ananta.co2emissioner.logger.Co2EmissionerLogger;
+ import com.ananta.co2emissioner.logger.Co2EmissionerLogger;
 import com.ananta.co2emissioner.resource.Co2EmissionerResources;
 
 

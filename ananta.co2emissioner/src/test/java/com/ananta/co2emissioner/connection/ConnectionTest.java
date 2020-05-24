@@ -18,7 +18,7 @@ public class ConnectionTest {
 	@Test
 	public void testHttpGet() {
 
-		assertEquals(c.httpGet( "Munich", "locality").getStatus(),200);
+		assertEquals(c.httpGet( "Los Angeles", "locality").getStatus(),200);
 		
 	}
 
