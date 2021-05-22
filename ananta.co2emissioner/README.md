@@ -1,6 +1,6 @@
 # Project Title
 
-CO2 emission calculator
+CO2 emission calculator solution
 
 ## Project Description Started
 
